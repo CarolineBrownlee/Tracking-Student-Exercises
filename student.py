@@ -9,11 +9,9 @@
 
 class Student:
 
-    def __init__(self, first_name, last_name, slack_handle, student_cohort, student_exercises):
+    def __init__(self, first_name, last_name, slack_handle, cohort):
         self.first_name = first_name
         self.last_name = last_name
         self.slack_handle = slack_handle
-        self.student_cohort = student_cohort
-        self.student_exercises = list()
-
-    
+        self.cohort = cohort
+        self.exercises = list()  
