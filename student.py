@@ -15,3 +15,9 @@ class Student:
         self.slack_handle = slack_handle
         self.cohort = cohort
         self.exercises = list()  
+
+    def list_assignments(self):
+        for exercise in self.exercises:
+            print(exercise.name)
+
+         

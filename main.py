@@ -43,3 +43,9 @@ Cohort_35.teach_cohort(Bill_Gates)
 
 # 6. Have each instructor assign 2 exercises to each of the students.
 
+Sponge_Bob_Squarepants.assign_exercise(Molly_Brownlee, Web_Design)
+Sponge_Bob_Squarepants.assign_exercise(Molly_Brownlee, Intro_to_JavaScript)
+Dexter_Lab.assign_exercise(Caroline_Brownlee, Intro_to_Python)
+Dexter_Lab.assign_exercise(Joseph_Brownlee, Intro_to_React)
+Bill_Gates.assign_exercise(Scooby_Doo, Web_Design)
+Bill_Gates.assign_exercise(Scooby_Doo, Flexbox)
