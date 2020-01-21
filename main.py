@@ -49,3 +49,16 @@ Dexter_Lab.assign_exercise(Caroline_Brownlee, Intro_to_Python)
 Dexter_Lab.assign_exercise(Joseph_Brownlee, Intro_to_React)
 Bill_Gates.assign_exercise(Scooby_Doo, Web_Design)
 Bill_Gates.assign_exercise(Scooby_Doo, Flexbox)
+
+# If I had a student instance referenced by the variable ivan:
+
+# Create a list of students. Add all of the student instances to it.
+# students = list()
+# Create a list of exercises. Add all of the exercise instances to it.
+# exercises = list()
+# Now, generate a report that displays which students are working on which exercises.
+
+# Example
+# Ivan is working on Kandy Korner, Stocks Report, and Planet List.
+
+Molly_Brownlee.list_assignments()
