@@ -16,3 +16,6 @@ class Student(NSSPerson):
     def list_assignments(self):
         for exercise in self.exercises:
             print(exercise.name)
+
+    def __repr__(self):
+        return f'{self.first_name} {self.last_name} is in {self.cohort}'
