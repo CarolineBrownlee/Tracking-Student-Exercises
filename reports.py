@@ -26,7 +26,7 @@ class Student_Exercise_Reports():
             order by s.cohort_id
             """)
 
-            # When you instruct the sqlite3 package to fetchall(), it takes your SQL string and walks over to the database and executes it. It then takes all of the rows that the database generates, and creates a tuple out of each one. It then puts all of those tuples into a list.
+            # When you instruct the sqlite3 package to fetchall(), it takes your SQL string and walks over to the database and executes it. It then takes all of the rows that the database generates, and creates a tuple out of each one. It then puts all of those tuples into a list. (Chapter Documentation, NSS)
 
             # TUPLE is a collection which is ordered and unchangeable. Allows duplicate members. Parenthesis. (W3 Schools)
 
@@ -35,7 +35,11 @@ class Student_Exercise_Reports():
             all_students = db_cursor.fetchall()
 
             for student in all_students:
-                # The index numbers correspond to the position of values in the SQL string above
+
+                # Since a tuple is simply an immutable list, you can use square-bracket notation to extract individual items out of it. Displaying a tuple to the terminal as output is not good UX. Use the following code to just display the first name (second column), last name (third column), and cohort name (sixth column). (Chapter Documentation, NSS)
+
+                # The index numbers correspond to the position of values in the SQL string above. (Self Notes)
+
                 print(f'{student[1]} {student[2]} is in {student[5]}')
 
 reports = Student_Exercise_Reports()
