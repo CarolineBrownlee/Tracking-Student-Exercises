@@ -24,3 +24,6 @@ class Cohort:
     def list_instructors(self):
         for instructor in self.instructors:
             print(instructor.first_name)
+
+    def __repr__(self):
+        return f'{self.name}'

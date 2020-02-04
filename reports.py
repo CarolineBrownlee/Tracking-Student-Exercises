@@ -1,5 +1,7 @@
 import sqlite3
 from student import Student
+from cohort import Cohort
+from exercise import Exercise
 
 class Student_Exercise_Reports():
 
@@ -69,5 +71,67 @@ class Student_Exercise_Reports():
                 # SINCE ADDING A __repr__() METHOD TO STUDENT.PY
 
     
-reports = Student_Exercise_Reports()
-reports.all_students()
+# reports = Student_Exercise_Reports()
+# reports.all_students()
+
+# Chapter 5:
+
+# 1. Display all cohorts.
+    def all_cohorts(self):
+
+        """Retrieve all cohorts"""
+
+        with sqlite3.connect(self.db_path) as conn:
+
+            conn.row_factory = lambda cursor, row: Cohort(row[1])
+
+            db_cursor = conn.cursor()
+            
+            db_cursor.execute("""
+            select c.cohort_id,
+                c.name
+            from Cohort c
+            """)
+
+            all_cohorts = db_cursor.fetchall() 
+
+            for cohort in all_cohorts:
+                print(cohort)
+
+# reports = Student_Exercise_Reports()
+# reports.all_cohorts()
+
+# 2. Display all exercises.
+    def all_exercises(self):
+
+        """Retrieve all exercises"""
+
+        with sqlite3.connect(self.db_path) as conn:
+
+            conn.row_factory = lambda cursor, row: Exercise(row[1], row[2])
+
+            db_cursor = conn.cursor()
+            
+            db_cursor.execute("""
+            select e.exercises_id,
+                e.name,
+                e.language
+            from Exercises e
+            """)
+
+            all_exercises = db_cursor.fetchall() 
+
+            for exercise in all_exercises:
+                print(exercise)
+            
+# reports = Student_Exercise_Reports()
+# reports.all_exercises()
+
+# 3. Display all JavaScript exercises.
+
+
+# 4. Display all Python exercises.
+# 5. Display all C# exercises.
+# 6. Display all students with cohort name.
+# 7. Display all instructors with cohort name.
+
