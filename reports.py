@@ -1,4 +1,5 @@
 import sqlite3
+from student import Student
 
 class Student_Exercise_Reports():
 
@@ -44,3 +45,6 @@ class Student_Exercise_Reports():
 
 reports = Student_Exercise_Reports()
 reports.all_students()
+
+caroline = Student("caroline", "brownlee", "@caroline", 36)
+
