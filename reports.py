@@ -175,16 +175,16 @@ class Student_Exercise_Reports():
             python_exercises = db_cursor.fetchall() 
 
             for exercise in python_exercises:
-                if exercise.language == "Pyton":
+                if exercise.language == "Python":
                     print(exercise)
 
-reports = Student_Exercise_Reports()
-reports.all_Python_exercises()
+# reports = Student_Exercise_Reports()
+# reports.all_Python_exercises()
 
 # 5. Display all C# exercises.
     def all_CSharp_exercises(self):
 
-        """Retrieve all Python exercises"""
+        # """Retrieve all Python exercises"""
 
         with sqlite3.connect(self.db_path) as conn:
 
@@ -205,10 +205,62 @@ reports.all_Python_exercises()
                 if exercise.language == "C#":
                     print(exercise)
 
-reports = Student_Exercise_Reports()
-reports.all_CSharp_exercises()
+# reports = Student_Exercise_Reports()
+# reports.all_CSharp_exercises()
 
 
 # 6. Display all students with cohort name.
 # 7. Display all instructors with cohort name.
 
+#  CONVERTING DATA SETS TO DICTIONARIES 
+    def exercises_with_students(self):
+        """Retrieve all exercises and the students working on each one"""
+
+        with sqlite3.connect(self.db_path) as conn:
+
+            db_cursor = conn.cursor()
+
+            db_cursor.execute("""
+                SELECT
+	                e.exercises_id,
+	                e.name,
+	                s.student_id,
+	                s.first_name,
+	                s.last_name
+                FROM Exercises e
+                JOIN Student_Exercises se ON se.exercises_id = e.exercises_id
+                JOIN Student s ON s.student_id = se.student_id;
+                """)
+
+            all_exercises_with_students = db_cursor.fetchall()
+
+            # for exercise_student in all_exercises_with_students:
+            #     print(f'{exercise_student[1]}: {exercise_student[3]} {exercise_student[4]}')
+
+            # Takes our list of tuples and converts it to a dictionary with the exercise name as the key and a list of students as the value.
+            exercises = dict()
+
+            for exercise_student in all_exercises_with_students:
+                exercises_id = exercise_student[0]
+                exercises_name = exercise_student[1]
+                student_id = exercise_student[2]
+                student_name = f'{exercise_student[3]} {exercise_student[4]}'
+
+                if exercises_name not in exercises:
+                    # exercises[exercise_name] is adding a new key/value pair to the exercises dictionary, where exercise_name is the variable containing the key value which is string
+
+                    # [student_name] is creating a list with one item, that item is the string contained in the variable student_name
+                    exercises[exercises_name] = [student_name]
+                else:
+                    exercises[exercises_name].append(student_name)
+
+            # print(exercises)
+            for exercise_name, students in exercises.items():
+                print(exercise_name)
+                for student in students:
+                    print(f'\t* {student}')
+
+
+reports = Student_Exercise_Reports()
+# reports.all_students()
+reports.exercises_with_students()

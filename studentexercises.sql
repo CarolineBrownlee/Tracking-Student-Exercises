@@ -73,3 +73,21 @@ VALUES (1, 1),
 (6, 1),
 (7, 2),
 (7, 3);
+
+UPDATE Exercises 
+SET name = 'Intro to Python'
+WHERE exercises_id = 2;
+
+UPDATE Exercises
+SET language = 'Python'
+WHERE exercises_id = 2;
+
+SELECT
+	e.exercises_id,
+	e.name,
+	s.student_id,
+	s.first_name,
+	s.last_name
+FROM Exercises e
+JOIN Student_Exercises se ON se.exercises_id = e.exercises_id
+JOIN Student s ON s.student_id = se.student_id;
