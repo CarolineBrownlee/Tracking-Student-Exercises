@@ -254,20 +254,16 @@ class Student_Exercise_Reports():
                 else:
                     exercises[exercises_name].append(student_name)
 
-            # print(exercises)
-            # for exercise_name, students in exercises.items():
-            #     print(exercise_name)
-            #     for student in students:
-            #         print(f'\t* {student}')
-            for student in students:
-                print(student)
-                for exercise_name, students in exercises.items():
-                    print(f'\t* {exercise_name}')
+            print(exercises)
+            for exercise_name, students in exercises.items():
+                print(exercise_name)
+                for student in students:
+                    print(f'\t* {student}')
 
 
-reports = Student_Exercise_Reports()
-# reports.all_students()
-reports.exercises_with_students()
+# reports = Student_Exercise_Reports()
+# # reports.all_students()
+# reports.exercises_with_students()
 
 # PRACTICE CHAPTER 7 EXERCISES
 # 1. List the exercises assigned to each student. Display each student name and the exercises s/he has been assigned beneath their name. Use a dictionary to track each student. Remember that the key should be the student id and the value should be the entire student object.
@@ -278,4 +274,49 @@ reports.exercises_with_students()
 # Tanner Terry is working on:
 #     * Solar System
 #     * ChickenMonkey
-    def 
+    def students_with_exercises(self):
+
+        """Retrieve all students and the exercises they are working on"""
+
+        with sqlite3.connect(self.db_path) as conn:
+
+            with sqlite3.connect(self.db_path) as conn:
+
+                db_cursor = conn.cursor()
+
+                db_cursor.execute("""
+                    SELECT 	
+                        s.student_id,
+                        s.first_name,
+                        s.last_name,
+                        e.exercises_id,
+                        e.name
+                    FROM Student s 
+                    JOIN Student_Exercises se ON se.exercises_id = e.exercises_id
+                    JOIN Exercises e ON s.student_id = se.student_id; 
+                """)
+
+                students_with_exercises = db_cursor.fetchall()
+
+                students_and_exercises = dict()
+
+                for student_exercise in students_with_exercises:
+                    student_id = student_exercise[0]
+                    student_name = f'{student_exercise[1]} {student_exercise[2]}'
+                    exercises_id = student_exercise[3]
+                    exercises_name = student_exercise[4]
+
+                    if student_name not in students_and_exercises:
+                        students_and_exercises[student_name] = [exercises_name]
+                    else:
+                        students_and_exercises[student_name].append(exercises_name)
+
+                    # print(students_and_exercises)
+                    for student_name, students in students_and_exercises.items():
+                        print(student_name)
+                        for exercise in exercises_name:
+                            print(f'\t* {exercise}')
+
+reports = Student_Exercise_Reports()
+# reports.all_students()
+reports.students_with_exercises()
