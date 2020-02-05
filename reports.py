@@ -151,11 +151,64 @@ class Student_Exercise_Reports():
                 if exercise.language == "JavaScript":
                     print(exercise)
 
-reports = Student_Exercise_Reports()
-reports.all_JavaScript_exercises()
+# reports = Student_Exercise_Reports()
+# reports.all_JavaScript_exercises()
 
-# 4. Display all Python exercises.
+# 4. Display all Python exercises
+    def all_Python_exercises(self):
+
+        """Retrieve all Python exercises"""
+
+        with sqlite3.connect(self.db_path) as conn:
+
+            conn.row_factory = lambda cursor, row: Exercise(row[1], row[2])
+
+            db_cursor = conn.cursor()
+                
+            db_cursor.execute("""
+            select e.exercises_id,
+                e.name,
+                e.language
+            from Exercises e
+            """)
+
+            python_exercises = db_cursor.fetchall() 
+
+            for exercise in python_exercises:
+                if exercise.language == "Pyton":
+                    print(exercise)
+
+reports = Student_Exercise_Reports()
+reports.all_Python_exercises()
+
 # 5. Display all C# exercises.
+    def all_CSharp_exercises(self):
+
+        """Retrieve all Python exercises"""
+
+        with sqlite3.connect(self.db_path) as conn:
+
+            conn.row_factory = lambda cursor, row: Exercise(row[1], row[2])
+
+            db_cursor = conn.cursor()
+                
+            db_cursor.execute("""
+            select e.exercises_id,
+                e.name,
+                e.language
+            from Exercises e
+            """)
+
+            csharp_exercises = db_cursor.fetchall() 
+
+            for exercise in csharp_exercises:
+                if exercise.language == "C#":
+                    print(exercise)
+
+reports = Student_Exercise_Reports()
+reports.all_CSharp_exercises()
+
+
 # 6. Display all students with cohort name.
 # 7. Display all instructors with cohort name.
 

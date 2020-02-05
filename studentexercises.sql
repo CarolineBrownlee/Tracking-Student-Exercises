@@ -27,7 +27,7 @@ INSERT INTO Exercises (name, language)
 VALUES ('Intro to React', 'React');
 
 INSERT INTO Exercises (name, language)
-VALUES ('Intro to Pyton', 'Pyton');
+VALUES ('Intro to Python', 'Python');
 
 INSERT INTO Exercises (name, language)
 VALUES ('Intro to C#', 'C#');
