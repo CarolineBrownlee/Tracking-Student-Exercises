@@ -255,12 +255,27 @@ class Student_Exercise_Reports():
                     exercises[exercises_name].append(student_name)
 
             # print(exercises)
-            for exercise_name, students in exercises.items():
-                print(exercise_name)
-                for student in students:
-                    print(f'\t* {student}')
+            # for exercise_name, students in exercises.items():
+            #     print(exercise_name)
+            #     for student in students:
+            #         print(f'\t* {student}')
+            for student in students:
+                print(student)
+                for exercise_name, students in exercises.items():
+                    print(f'\t* {exercise_name}')
 
 
 reports = Student_Exercise_Reports()
 # reports.all_students()
 reports.exercises_with_students()
+
+# PRACTICE CHAPTER 7 EXERCISES
+# 1. List the exercises assigned to each student. Display each student name and the exercises s/he has been assigned beneath their name. Use a dictionary to track each student. Remember that the key should be the student id and the value should be the entire student object.
+# Example
+# Jessawynne Parker is working on:
+#     * Stock Report
+#     * Boy Bands & Vegetables
+# Tanner Terry is working on:
+#     * Solar System
+#     * ChickenMonkey
+    def 
